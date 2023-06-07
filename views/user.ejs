@@ -1,0 +1,279 @@
+<script type="module">const userCountModule = require('./path/to/user_count');
+console.log("count user ",userCountModule.userCount);</script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicons -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/hand.css">
+    <link rel="stylesheet" href="/assets/css/simple-lightbox.min.css" />
+
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" /> -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+
+    <title>Resume Landing Page</title>
+</head>
+
+<body>
+    <nav>
+    <a href="/user" class="logo">
+        <h1>
+            <span class="jab">HELLO </span><span class="tv">RESUME</span><span class="fist">
+            <img src="/assets/images/hand2.png" style="font-size: 20px; width:25px;" class="hand-image"> </img>
+        </h1>
+    </a>
+
+        <!-- Dark/light theme switcher -->
+        <div class="theme-switch">
+            <input type="checkbox" class="checkbox" id="checkbox" />
+            <label for="checkbox" class="label">
+                <ion-icon name="partly-sunny-outline" class="sun"></ion-icon>
+                <ion-icon name="moon-outline" class="moon"></ion-icon>
+                <div class="switcher"></div>
+            </label>
+        </div>
+
+        <ul>
+            <li class="nav-item">
+                <a href="/about" class="nav-link" id="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="/show_resume" class="nav-link" id="nav-link">Resume</a>
+            </li>
+            <li class="nav-item">
+                <a href="" onclick="logout()" class="nav-link" id="nav-link">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" id="username" class="nav-link" id="nav-link"></a>
+            </li>
+           
+            <li class="nav-item">
+                <a href="/profile_pic"><img src="" id="dp_pic" class="nav-profile" id="nav-link"></img></a>
+            </li>
+
+        </ul>
+
+        <!-- Bars -->
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- Hero section -->
+    <section class="hero">
+      
+    <a class="btn red" href="/resume_form">create your resume click here</a>
+    <img src="/assets/images/hand.png" alt="Hand" class="hand">
+
+    </section>
+   
+       
+
+<section class="people" id="stakeholders" style="margin-top: 70px;">
+    <div class="stakeholders">
+        <div class="persons">
+          
+            <div class="person-1">
+                <img src="/assets/images/resume1.jpg" alt="resume" />
+                <p class="name">Resume sample 1</p>
+                <p class="role"></p>
+            </div>
+            <div class="person-2">
+                <img src="/assets/images/cv.jpg" alt="resume" />
+                <p class="name">Resume sample 2</p>
+                <p class="role"></p>
+            </div>
+            <div class="person-3">
+                <img src="/assets/images/pkresume.jpeg" alt="resume" />
+                <p class="name">Resume sample 3</p>
+                <p class="role"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+    <!-- Email subscription -->
+    <section class="sub" id="sub">
+        <h3>Subscribe to our website for updates</h3>
+        <form action="#">
+            <input type="email" name="email" id="email-sub" class="email-sub" required />
+            <input type="submit" value="Subscribe" id="submit-btn" class="submit-btn" />
+        </form>
+    </section>
+
+    <!-- Social icons -->
+    <section class="social">
+        <h3>Connect with us on Social Media</h3>
+        <div class="socicons">
+            <a href="#"> <ion-icon name="logo-twitter"></ion-icon> </a>
+            <a href="#"> <ion-icon name="logo-instagram"></ion-icon> </a>
+            <a href="#"> <ion-icon name="logo-facebook"></ion-icon> </a>
+        </div>
+    </section>
+
+    <footer>&copy;2023. All Rights Reserverd
+     <h5>Developed By:- Anant Prakash</h5>
+    <h5>Number of Connected Users: <span id="userCount"></span></h5>
+
+    </footer>
+    
+
+    <!-- Scroll to top button -->
+    <i class="scroll-up" id="scroll-up"><img src="assets/icons/icons8-upward-arrow.png" class="socicon up-arrow"
+            alt="up-arrow" /></i>
+
+    <!-- Web page script -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Ion icons CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Simple lightbox -->
+    <script src="assets/js/simple-lightbox.min.js"></script>
+    <script>
+        var lightbox = new SimpleLightbox(".stars-gallery a");
+    </script>
+
+
+<div id="whatsapp-button" class="hidden">
+    <a href="https://api.whatsapp.com/send?phone=7903167633" target="_blank">
+        <img src="/assets/images/wht.png" alt="WhatsApp">
+    </a>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/profile_pic2',
+            type: 'GET',
+            success: function (images) {
+                console.log("data pk", images);
+                var name1 = images[0].username;
+                var image1 = images[0].data;
+
+                if (image1) {
+                    $('#dp_pic').attr('src', `data:image/png;base64,${image1}`);
+                } else {
+                    // Set default profile picture here
+                    $('#dp_pic').attr('src', 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png');
+                }
+                $('#username').text(name1);
+            },
+            error: function () {
+                // Handle the error if the AJAX request fails
+                console.log('Error occurred while retrieving profile picture.');
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var User = localStorage.getItem("userid");
+        console.log("user name hh=",User);
+        if (User == null) {
+            window.location.href = "/logIn";
+        } else {
+            $("#userId").html(User);
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("userid");
+        window.location.href = "/login";
+    }
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function () {
+        updateUserCount();
+
+        function updateUserCount() {
+            $.ajax({
+                url: '/user_count',
+                success: function (data) {
+                    $('#userCount').text(data.userCount);
+                }
+            });
+        }
+
+        // Connect to the WebSocket server
+        const socket = io();
+
+        // Update user count when received from the server
+        socket.on('userCount', function (userCount) {
+            $('#userCount').text(userCount);
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var delayInMilliseconds = 3000; // 5 seconds
+
+        function autoOpenWhatsApp() {
+            document.getElementById('whatsapp-button').classList.remove('hidden');
+        }
+
+        setInterval(function () {
+            document.getElementById('whatsapp-button').classList.toggle('jump-animation');
+        }, 5000);
+
+        setTimeout(autoOpenWhatsApp, delayInMilliseconds);
+    });
+</script>
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    #whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        animation: jumpAnimation 1.00s ease-in-out infinite;
+    }
+
+    #whatsapp-button img {
+        width: 60px;
+        height: 60px;
+    }
+
+    @keyframes jumpAnimation {
+
+        0%,
+        50%,
+        100% {
+            transform: translateY(0);
+        }
+
+        25% {
+            transform: translateY(-10px);
+        }
+
+        75% {
+            transform: translateY(-5px);
+        }
+    }
+
+
+</style>
+
+
+
+
+</html>

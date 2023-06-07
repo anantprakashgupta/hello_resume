@@ -1,0 +1,63 @@
+.hand {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 25%;
+    left: 8px;
+    margin-left: 420px;
+    transform: translateY(-50%);
+    animation: hand-indicate 2s infinite;
+    transform-origin: bottom center;
+}
+
+@keyframes hand-indicate {
+    0% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hand {
+        /* Adjust the properties to fit your desired mobile layout */
+        width: 30px;
+        height: 30px;
+        top: 16%;
+        left: 190px;
+        margin-left: 120px;
+    }
+}
+
+.hand-image {
+    animation: hand-animation 0.9s infinite;
+    transform-origin: center;
+}
+
+@keyframes hand-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(0eg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

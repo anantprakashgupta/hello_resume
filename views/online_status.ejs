@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicons -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/hand.css">
+    <link rel="stylesheet" href="/assets/css/simple-lightbox.min.css" />
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+
+    <title>Admin Dashboard</title>
+</head>
+<style>
+    table {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    table caption {
+        font-size: 1.5em;
+        margin: .5em 0 .75em;
+    }
+
+    table tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: .35em;
+    }
+
+    table th,
+    table td {
+        padding: .625em;
+        text-align: center;
+    }
+
+    table th {
+        font-size: .85em;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+    @media screen and (max-width: 600px) {
+        table {
+            border: 0;
+        }
+
+        table caption {
+            font-size: 1.3em;
+        }
+
+        table thead {
+            border: none;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        table tr {
+            border-bottom: 3px solid #ddd;
+            display: block;
+            margin-bottom: .625em;
+        }
+
+        table td {
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: .8em;
+            text-align: right;
+        }
+
+        table td::before {
+            /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        table td:last-child {
+            border-bottom: 0;
+        }
+    }
+
+
+    /* general styling */
+    body {
+        font-family: "Open Sans", sans-serif;
+        line-height: 1.25;
+    }
+
+    .button-7 {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none; 
+
+}
+
+.button-7:hover,
+.button-7:focus {
+  background-color: #07c;
+}
+
+.button-7:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-7:active {
+  background-color: #1d2e3d;
+  box-shadow: none;
+}
+@media only screen and (max-width: 600px) {
+  .button-7 {
+    /* float: left */
+    /* margin-top: -10px; */
+  }
+}
+</style>
+
+<body>
+    <nav>
+        <a href="'/user" class="logo">
+            <h1>
+                <span class="jab">Hello </span><span class="tv">Resume</span><span style="font-size: 20px;"
+                    class="fist">👋</span>
+            </h1>
+        </a>
+
+        <!-- Dark/light theme switcher -->
+        <div class="theme-switch">
+            <input type="checkbox" class="checkbox" id="checkbox" />
+            <label for="checkbox" class="label">
+                <ion-icon name="partly-sunny-outline" class="sun"></ion-icon>
+                <ion-icon name="moon-outline" class="moon"></ion-icon>
+                <div class="switcher"></div>
+            </label>
+        </div>
+
+        <ul>
+            <li class="nav-item">
+                <a href="/about" class="nav-link" id="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#stars" class="nav-link" id="nav-link">Resume</a>
+            </li>
+            <li class="nav-item">
+                <a href="" onclick="logout()" class="nav-link" id="nav-link">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a href="" id="userId" class="nav-link" id="nav-link"></a>
+            </li>
+            <li class="nav-item">
+                <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" class="nav-profile"
+                    id="nav-link"></img>
+            </li>
+
+        </ul>
+
+        <!-- Bars -->
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    <!-- ////////////////////////////////////// -->
+
+    <!-- <h1>Online/Offline Status</h1> -->
+    <div id="">
+        <table id="container">
+            <tr>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <% users.forEach(function(user) { %>
+                <tr id="user-<%= user.id %>">
+                    <td>
+                        <%= user.username %>
+                    </td>
+                    <td class="status">
+                        <% if (user.status==='online' ) { %>
+                            (online)
+                            <% } else { %>
+                                (offline)
+                                <% } %>
+                    </td>
+                    <td>
+                        <button onclick="updateStatus(<%= user.id %>, '1')" class="button-7" role="button">Go Online</button>
+                        <button onclick="updateStatus(<%= user.id %>, '0')" class="button-7" role="button">Go Offline</button>
+                    </td>
+                </tr>
+                <% }); %>
+        </table>
+    </div>
+
+    <!-- //////////////////////////////////////////// -->
+
+
+
+    <section class="sub" id="sub">
+        <h3>Subscribe to our website for updates</h3>
+        <form action="#">
+            <input type="email" name="email" id="email-sub" class="email-sub" required />
+            <input type="submit" value="Subscribe" id="submit-btn" class="submit-btn" />
+        </form>
+    </section>
+
+    <!-- Social icons -->
+    <section class="social">
+        <h3>Connect with us on Social Media</h3>
+        <div class="socicons">
+            <a href="#"> <ion-icon name="logo-twitter"></ion-icon> </a>
+            <a href="#"> <ion-icon name="logo-instagram"></ion-icon> </a>
+            <a href="#"> <ion-icon name="logo-facebook"></ion-icon> </a>
+        </div>
+    </section>
+
+    <footer>&copy;2023. All Rights Reserverd</footer>
+
+    <!-- Scroll to top button -->
+    <i class="scroll-up" id="scroll-up"><img src="assets/icons/icons8-upward-arrow.png" class="socicon up-arrow"
+            alt="up-arrow" /></i>
+
+    <!-- Web page script -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Ion icons CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Simple lightbox -->
+    <script src="assets/js/simple-lightbox.min.js"></script>
+    <script>
+        var lightbox = new SimpleLightbox(".stars-gallery a");
+    </script>
+</body>
+
+<script>
+    $(document).ready(function () {
+        var User = localStorage.getItem("userid");
+        console.log("user name hh=", User);
+        if (User == null) {
+            window.location.href = "/login";
+        } else {
+            $("#userId").html("Admin " + User);
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("userid");
+        window.location.href = "/login";
+    }
+
+</script>
+
+
+<script>
+    // Connect to the WebSocket server
+    const socket = io();
+
+    // Function to update online status
+    function updateStatus(userId, status) {
+        $.ajax({
+            url: '/updateStatus',
+            method: 'POST',
+            data: { id: userId, status: status },
+            success: function () {
+                console.log('Status updated successfully!');
+            },
+            error: function (xhr, status, error) {
+                console.error('Error updating status:', error);
+            }
+        });
+    }
+
+    // Handle status change event from server
+    socket.on('statusChange', ({ id, status }) => {
+        const userElement = $(`#user-${id}`);
+        const statusElement = userElement.find('.status');
+
+        if (status === '1') {
+            statusElement.css('color', 'green').text('(online)');
+        } else {
+            statusElement.css('color', 'red').text('(offline)');
+        }
+    });
+
+    // Handle connect event
+    socket.on('connect', () => {
+        checkAndUpdateStatus();
+    });
+
+    // Handle disconnect event
+    socket.on('disconnect', () => {
+        const statusElements = $('.status');
+        statusElements.css('color', 'red').text('(offline)');
+        $('.message').text('Network Disconnected');
+    });
+
+    // Function to check and update status based on username
+    function checkAndUpdateStatus() {
+        const username = sessionStorage.getItem('username');
+        if (username) {
+            $('.message').text('');
+            const userElements = $('.status').parent();
+            userElements.each(function () {
+                const userId = $(this).attr('id').split('-')[1];
+                if ($(this).find('.status').text() === '(online)') {
+                    updateStatus(userId, '1');
+                } else {
+                    updateStatus(userId, '0');
+                }
+            });
+        } else {
+            $('.status').css('color', 'red').text('(offline)');
+            $('.message').text('Network Disconnected');
+        }
+    }
+
+</script>
+
+</html>

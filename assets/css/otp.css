@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+:where(.container2, form, .input-field, header) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container2 {
+    background: #f6fbff;
+    padding: 35px 65px 50px 65px;
+    border-radius: 20px;
+    row-gap: 20px;
+    box-shadow: 0 5px 10px rgba(14, 9, 9, 0.1);
+    margin-top: 70px;
+    max-height: 500px;
+}
+
+.container2 header {
+    height: 150px;
+    width: 150px;
+    background-image: url('images/image.gif');
+    background-size: cover;
+    background-position: center;
+}
+
+.container2 h4 {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.container2 p {
+    max-width: 250px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.container2 p a {
+    color: #4FAAF4;
+    text-decoration: none;
+}
+
+.container2 p a:hover {
+    text-decoration: underline;
+}
+
+form .input-field {
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+form .input-field input {
+    height: 40px;
+    width: 150px;
+    border-radius: 13px;
+    outline: none;
+    font-size: 1.125rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+form .input-field input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+}
+
+form .input-field input::-webkit-inner-spin-button,
+form .input-field input::-webkit-outer-spin-button {
+    display: none;
+}
+
+form button {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    width: 100%;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    padding: 9px 0;
+    cursor: pointer;
+    border-radius: 15px;
+    /* pointer-events: none; */
+    background: #055fa8;
+    opacity: .5;
+    transition: all 0.2s ease;
+}
+form input[type='submit']{
+    margin-top: 25px;
+        margin-bottom: 15px;
+        width: 100%;
+        color: #fff;
+        font-size: 1rem;
+        border: none;
+        padding: 9px 0;
+        cursor: pointer;
+        border-radius: 15px;
+        /* pointer-events: none; */
+        background: #055fa8;
+        opacity: .5;
+        transition: all 0.2s ease;
+}
+form input[type='submit']:hover{
+    background: #101922;
+}
+
+form button.active {
+    opacity: 5;
+    pointer-events: auto;
+}
+
+form button:hover {
+    background: #101922;
+}

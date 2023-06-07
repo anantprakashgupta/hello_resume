@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== CSS ===== -->
+    <!-- <link rel="stylesheet" href="/assets/css/resume_form.css"> -->
+    <link rel="stylesheet" href="/assets/css/navbar_blue.css">
+    <link rel="stylesheet" href="/assets/css/hand.css">
+    <script src="/assets/js/min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+    <!-- ===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Resume Form</title>
+</head>
+<style>
+    /* .container4 {
+    background-color: #ffffff;
+    width: 70%;
+    min-width: 420px;
+    padding: 35px 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 10px;
+    box-shadow: 20px 30px 25px rgba(0, 0, 0, 0.15);
+    margin-top: 630px;
+  
+  } */
+    .container4 {
+        background-color: #ffffff;
+        width: 70%;
+        min-width: 420px;
+        padding: 35px 50px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border-radius: 10px;
+        box-shadow: 20px 30px 25px rgba(0, 0, 0, 0.15);
+        margin-top: 80vh;
+        /* Adjust this value as needed */
+    }
+
+
+    h1 {
+        font-size: 30px;
+        text-align: center;
+        color: #1c093c;
+    }
+
+    p {
+        position: relative;
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        color: #606060;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    #f_o_r_m form {
+        width: 100%;
+        position: relative;
+        margin: 30px auto 0 auto;
+    }
+
+    .row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 20px 30px;
+        margin-bottom: 20px;
+    }
+
+    label {
+        color: #1c093c;
+        font-size: 14px;
+    }
+
+    textarea,
+    input, select {
+        width: 100%;
+        font-weight: 400;
+        padding: 8px 10px;
+        border-radius: 5px;
+        border: 1.2px solid #c4cae0;
+        margin-top: 5px;
+    }
+    
+
+    textarea {
+        resize: none;
+    }
+
+    textarea:focus,
+    input:focus {
+        outline: none;
+        border-color: #6f6df4;
+    }
+
+    button {
+        border: none;
+        padding: 10px 20px;
+        background: linear-gradient(130deg,
+                #6f6df4,
+                #4c46f5);
+        color: #ffffff;
+        border-radius: 3px;
+        width: 100%;
+    }
+ button:hover {
+    background-color: #2b0b63;
+}
+
+</style>
+
+<body>
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen'></i>
+            <span class="logo navLogo"><a href="/user" style="font-size: 15px;">HELLO <span style="color: red;">RESUME
+                <img src="/assets/images/hand2.png" style="font-size: 20px; width:20px;" class="hand-image"> </img></span>
+                </a></span>
+
+            <div class="menu">
+                <div class="logo-toggle">
+                    <span class="logo navLogo"><a href="/user" style="font-size: 15px;">HELLO <span style="color: red;">RESUME 👋</span>
+                        </a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="/user">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/show_resume" >Resume</a></li>
+                    <li><a href="#">user count  <span id="userCount"></span></a></li>
+                    <li><a href="" onclick="logout()">Logout</a></li>
+                    <li><a href="" id="username_dp" style="color: rgb(27, 255, 6);"></a></li>
+                    <!-- <div class="navProfile">
+                        <img src="" id="" alt="Profile Picture">
+                    </div> -->
+                </ul>
+            </div>
+
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-moon moon'></i>
+                    <i class='bx bx-sun sun'></i>
+                </div>
+
+                <div class="searchBox">
+                    <div class="searchToggle">
+                        <i class='bx bx-x cancel'></i>
+                        <i class='bx bx-search search'></i>
+                    </div>
+
+                    <div class="search-field">
+                        <input type="text" placeholder="Search...">
+                        <i class='bx bx-search'></i>
+                    </div>
+                </div>
+            </div>
+            <li class="navProfile">
+                <a href="/profile_pic"><img src="" id="dp_pic" id="nav-link"></img></a>
+            </li>
+        </div>
+    </nav>
+    <!-- ////////////////////////////////////////////// -->
+    <div class="container4">
+        <h1>RESUME FORM</h1>
+
+        <form id="uploadForm" class="f_o_r_m" enctype="multipart/form-data">
+            <div class="row">
+                <div class="column">
+                    <label for="name">Name</label>
+                    <input type="text" id="username" name="name" placeholder="Your name here">
+                </div>
+                <div class="column">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your email here">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="name">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Your Email here">
+                </div>
+                <div class="column">
+                    <label for="tel">Mobile</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Your Mobile Number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="text">Father Name</label>
+                    <input type="text" id="father_name" name="father_name" placeholder="Your father Name here">
+                </div>
+                <div class="column">
+                    <label for="date">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" placeholder="Your DOB here">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="religion">Religion</label>
+                    <input type="text" id="religion" name="religion" placeholder="Your Religion here">
+                </div>
+                <div class="column">
+                    <label for="nationality">Nationality</label>
+                    <input type="text" id="nationality" name="nationality" placeholder="Your Nationality here">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="skills">Skills</label>
+                    <input type="text" id="skills" name="skills" placeholder="Your Skills here">
+                </div>
+                <div class="column">
+                    <!-- <label for="sex">Gender</label>
+                    <input type="text" id="sex" name="sex" placeholder="Your Gender here"> -->
+                    <label for="sex">Gender</label>
+                    <select type="text" id="sex" name="sex">
+                    <option value=""></option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="hobby">Hobby</label>
+                    <input type="text" id="hobby" name="hobby" placeholder="Your experience here">
+                </div>
+                <div class="column">
+                    <label for="language">Language</label>
+                    <input type="text" id="language" name="language" placeholder="Your Language here">
+                </div>
+            </div>
+
+            <!-- ////////////////////// -->
+            <div class="row">
+    
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="experience">Describe your Experience here</label>
+                    <textarea id="experience" name="experience" placeholder="Describe your experience  detail here"
+                        rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="matric">Describe 10th Matric Percentage</label>
+                    <textarea id="matric" name="matric" placeholder="Describe your 10th matric detail here" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="intermediate">Describe 12th intermediate Percentage</label>
+                    <textarea id="intermediate" name="intermediate"
+                        placeholder="Describe your intermediate  detail here" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="graduation">Describe graduation Percentage</label>
+                    <textarea id="graduation" name="graduation" placeholder="Describe your graduation detail here"
+                        rows="3"></textarea>
+                </div>
+            </div>
+            <button type="submit">Save Resume Data</button>
+            </form>
+
+                <form id="upload_photo" enctype="multipart/form-data">
+                    <div style="margin-left: 20px;">
+                        <input type="file" name="image">
+                        <!-- <label>Upload image</label> -->
+                    </div>
+                </form>
+            <div>
+                <button onclick="show_rsm()">Show Resume</button>
+                <button onclick="update_resume_photo()" style="margin-top: 5px;">Upload Photo</button>
+            </div>
+        
+        <!-- //////////////////////////////// -->
+    </div>
+
+    <script>
+
+        const body = document.querySelector("body"),
+            nav = document.querySelector("nav"),
+            modeToggle = document.querySelector(".dark-light"),
+            searchToggle = document.querySelector(".searchToggle"),
+            sidebarOpen = document.querySelector(".sidebarOpen"),
+            siderbarClose = document.querySelector(".siderbarClose");
+
+        let getMode = localStorage.getItem("mode");
+        if (getMode && getMode === "dark-mode") {
+            body.classList.add("dark");
+        }
+
+        // js code to toggle dark and light mode
+        modeToggle.addEventListener("click", () => {
+            modeToggle.classList.toggle("active");
+            body.classList.toggle("dark");
+
+            // js code to keep user selected mode even page refresh or file reopen
+            if (!body.classList.contains("dark")) {
+                localStorage.setItem("mode", "light-mode");
+            } else {
+                localStorage.setItem("mode", "dark-mode");
+            }
+        });
+
+        // js code to toggle search box
+        searchToggle.addEventListener("click", () => {
+            searchToggle.classList.toggle("active");
+        });
+
+
+        //   js code to toggle sidebar
+        sidebarOpen.addEventListener("click", () => {
+            nav.classList.add("active");
+        });
+
+        body.addEventListener("click", e => {
+            let clickedElm = e.target;
+
+            if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")) {
+                nav.classList.remove("active");
+            }
+        });
+
+    </script>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    function show_rsm() {
+        window.location.href = "show_resume";
+    }
+    $(document).ready(function () {
+        $('#uploadForm').submit(function (e) {
+            e.preventDefault();
+
+            var name = $('input[name="name"]').val();
+            var address = $('input[name="address"]').val();
+
+            // Other form data
+            var dob = $('input[name="dob"]').val();
+            var mobile = $('input[name="mobile"]').val();
+            var email = $('input[name="email"]').val();
+            var father_name = $('input[name="father_name"]').val();
+            var religion = $('input[name="religion"]').val();
+            var nationality = $('input[name="nationality"]').val();
+
+            var skills = $('input[name="skills"]').val();
+            // var sex = $('input[name="sex"]').val();
+            var sex = $('#sex').val();
+            var language = $('input[name="language"]').val();
+            var hobby = $('input[name="hobby"]').val();
+            var matric = $('textarea[name="matric"]').val();
+            var intermediate = $('textarea[name="intermediate"]').val();
+            var graduation = $('textarea[name="graduation"]').val();
+            var experience = $('textarea[name="experience"]').val();
+
+            // Send the data as JSON
+            $.ajax({
+                type: 'POST',
+                url: '/upload',
+                data: JSON.stringify({
+                    name: name,
+                    address: address,
+                    dob: dob,
+                    mobile: mobile,
+                    email: email,
+                    father_name: father_name,
+                    religion: religion,
+                    nationality: nationality,
+                    skills: skills,
+                    sex: sex,
+                    experience: experience,
+                    language: language,
+                    hobby: hobby,
+                    matric: matric,
+                    intermediate: intermediate,
+                    graduation: graduation,
+                }),
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response);
+                    swal({
+                        title: "Success!",
+                        text: "Resume Data Save successfully",
+                        icon: "success",
+                        timer: 3000, // 3 seconds
+                        button: false, // Hide the button
+                        closeOnClickOutside: false, // Prevent closing on click outside the alert
+                        closeOnEsc: false // Prevent closing on pressing Esc key
+                    });
+                },
+                error: function (error) {
+                    // Handle error response
+                },
+            });
+
+
+            if (fileInput) {
+                reader.readAsDataURL(fileInput); // Read the file as base64
+            } else {
+                // Handle case when no file is selected
+                alert('Please select an image file');
+            }
+        });
+    });
+</script>
+
+<!-- /////////////////// image update /////////////// -->
+<script>
+    function update_resume_photo() {
+
+        var fileInput = $('input[name="image"]')[0].files[0]; // Get the file object
+
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            var imageBase64 = reader.result; // Get the base64 data
+
+            // Remove the prefix 'data:image/jpeg;base64,'
+            var base64Index = imageBase64.indexOf(',') + 1;
+            if (base64Index !== -1) {
+                imageBase64 = imageBase64.substring(base64Index);
+            }
+            // Send the data as JSON
+            $.ajax({
+                type: 'POST',
+                url: '/update_resume_photo2',
+                data: JSON.stringify({
+                    imageBase64: imageBase64,
+                }),
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log("update photo ", response);
+                    swal({
+                        title: "Success!",
+                        text: "Photo updated successfully",
+                        icon: "success",
+                        timer: 3000, // 3 seconds
+                        button: false, // Hide the button
+                        closeOnClickOutside: false, // Prevent closing on click outside the alert
+                        closeOnEsc: false // Prevent closing on pressing Esc key
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                    // Handle error response
+                },
+            });
+        };
+
+        if (fileInput) {
+            reader.readAsDataURL(fileInput); // Read the file as base64
+        } else {
+            // Handle case when no file is selected
+            alert('Please select an image file');
+        }
+        // });
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/profile_pic2',
+            type: 'GET',
+            success: function (images) {
+                console.log("data pk", images);
+                var name1 = images[0].username;
+                var image1 = images[0].data;
+
+                if (image1) {
+                    $('#dp_pic').attr('src', `data:image/png;base64,${image1}`);
+                } else {
+                    // Set default profile picture here
+                    $('#dp_pic').attr('src', 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png');
+                }
+                $('#username_dp').text(name1);
+            },
+            error: function () {
+                // Handle the error if the AJAX request fails
+                console.log('Error occurred while retrieving profile picture.');
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var User = localStorage.getItem("userid");
+        console.log(User);
+        if (User == null) {
+            window.location.href = "/logIn";
+        } else {
+            $("#userId").html(User);
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("userid");
+        window.location.href = "/logIn";
+    }
+
+</script>
+<script>
+    // Fetch existing user details via AJAX
+    $(document).ready(function () {
+        const select = $('#sex');
+        const optionMale = $('<option>')
+            .val('male')
+            .text('Male');
+        const optionFemale = $('<option>')
+            .val('female')
+            .text('Female');
+        select.append(optionMale, optionFemale);
+        $.ajax({
+            url: '/resume_data_view_input_field',
+            method: 'POST',
+            success: function (user) {
+                var dob = user.dob; 
+                $('#username').val(user.name);
+                $('#mobile').val(user.mobile);
+                $('#email').val(user.email);
+                $('#address').val(user.address);
+                $('#father_name').val(user.father_name);
+                // $('#dob').val(user.dob);
+                $('#religion').val(user.religion);
+                $('#nationality').val(user.nationality);
+                $('#experience').val(user.experience);
+                $('#language').val(user.language);
+                $('#hobby').val(user.hobby);
+                $('#matric').val(user.matric);
+                $('#intermediate').val(user.intermediate);
+                $('#graduation').val(user.graduation);
+                $('#skills').val(user.skills);
+                $('#dob').val(dob);
+                
+                select.find('option[value="' + user.sex + '"]').prop('selected', true);
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function () {
+        updateUserCount();
+
+        function updateUserCount() {
+            $.ajax({
+                url: '/user_count',
+                success: function (data) {
+                    $('#userCount').text(data.userCount);
+                }
+            });
+        }
+
+        // Connect to the WebSocket server
+        const socket = io();
+
+        // Update user count when received from the server
+        socket.on('userCount', function (userCount) {
+            $('#userCount').text(userCount);
+        });
+    });
+</script>
+
+
+
+</html>

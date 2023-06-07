@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html>
+
+<head>
+
+    <title> </title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+<link rel="stylesheet" href="/assets/css/show_resume.css">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" />
+    <!-- <link rel="stylesheet" type="text/css" href="./resume.css" media="all" /> -->
+
+</head>
+
+<body>
+    <div id="btn_top">
+    <a href="/resume_form">
+        <button class="button-8" role="button">Back</button>
+    </a>
+    
+    <a href="/logout">
+        <button class="button-8" role="button">Logout</button>
+    </a>
+    
+    <a >
+        <button class="button-8" id="download_btn" role="button">PDF Download</button>
+    </a>
+
+</div>
+    <div id="doc2" class="yui-t7">
+        <div id="inner">
+
+            <div id="hd">
+                <div class="yui-gc">
+            <div class="yui-u first">
+                <h1 id="name">Name: </h1>
+                <h3 id="address" style="color: red;">Address: <a href="mailto:name@yourdomain.com"></a></h3>
+                <h3 id="mobile">Mobile: </h3>
+                <h3 id="email">Email: </h3>
+            </div>
+                    
+                    <!-- <div class="yui-u">
+					<div class="contact-info">
+						
+						<h3><a href="mailto:name@yourdomain.com">Add:Diwan ke Barka Gaon</a></h3>
+						<h3>Mo-7903167633</h3>
+						<h3>Email-prakashgupta1610@gmail.com</h3>
+					</div>
+				</div> -->
+                    <div class="yui-u">
+                        <img src="" id="image1" alt="Jonathan Doe's Photo" style="width: 100px; height: auto; float: right;">
+                    </div>
+                </div><!--// .yui-gc -->
+            </div><!--// hd -->
+
+            <div id="bd">
+                <div id="yui-main">
+                    <div class="yui-b">
+
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Skills</h2>
+                            </div>
+                            <div class="yui-u">
+                                <p class="enlarge" id="skills"></p>
+            
+                            </div>
+                        </div><!--// .yui-gf -->
+
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2> QUILIFICATION</h2>
+                            </div>
+                            <div class="yui-u">
+
+                                <div class="talent">
+                                    <h2>10th</h2>
+                                    <p id="matric">I have completed 10 th from B.S.E.B Board Patna with (60.6%). </p>
+                                </div>
+                                <div class="talent">
+                                    <h2>12th</h2>
+                                    <p id="intermediate">I have completed 10 th from B.S.E.B Board Patna with (60.6%). </p>
+                                </div>
+                                <div class="talent">
+                                    <h2>Greduation</h2>
+                                    <p id="graduation">I have completed 10 th from B.S.E.B Board Patna with (60.6%). </p>
+                                </div>
+
+
+                            </div>
+                        </div><!--// .yui-gf -->
+
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Personal Details</h2>
+                            </div>
+                            <div class="yui-u">
+                                <ul class="talent">
+                                    <li>Father Name:-</li>
+                                    <li>DOB:-</li>
+                                    <li>Religion:-</li>
+                                    <li>Nationality:-</li>
+                                </ul>
+
+                                <ul class="talent">
+                                    <li id="father_name">father name</li>
+                                    <li id="dob">dob</li>
+                                    <li id="religion">religion</li>
+                                    <li id="nationality">nationality</li>
+                                </ul>
+
+                              
+                            </div>
+                        </div>
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Experience</h2>
+                            </div><!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <div class="job">
+                                    <h2>Facebook</h2>
+                                    <h3>Senior Interface Designer</h3>
+                                    <h4>2005-2007</h4>
+                                    <p id="experience"></p>
+                                </div>
+
+
+
+                            </div><!--// .yui-u -->
+                        </div><!--// .yui-gf -->
+
+
+                        <div class="yui-gf last">
+                            <div class="yui-u first">
+                                <h2>Language</h2>
+                            </div>
+                            <div class="yui-u">
+                                <h2 id="language">Hindi </h2>
+                                <h3>English</strong> </h3>
+                            </div>
+                        </div>
+                        <div class="yui-gf last">
+                            <div class="yui-u first">
+                                <h2>Hobby</h2>
+                            </div>
+                            <div class="yui-u">
+                                <h2 id="hobby">singing </h2>
+
+                            </div>
+                        </div>
+
+
+                    </div><!--// .yui-b -->
+                </div><!--// yui-main -->
+            </div><!--// bd -->
+
+        </div><!-- // inner -->
+
+
+    </div><!--// doc -->
+
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/show',
+            type: 'GET',
+            success: function (images) {
+                // console.log("data pk", images);
+                var name1 = images[0].name;
+                var image1 = images[0].data;
+                var address = images[0].address;
+                var email = images[0].email;
+                var father_name = images[0].father_name;
+                var dob = images[0].dob;
+                var religion = images[0].religion;
+                var skills = images[0].skills;
+                var mobile = images[0].mobile;
+                var sex = images[0].sex;
+                var experience = images[0].experience;
+                var language = images[0].language;
+                var hobby = images[0].hobby;
+                var matric = images[0].matric;
+                var intermediate = images[0].intermediate;
+                var graduation = images[0].graduation;
+                var nationality = images[0].nationality;
+                console.log("exppp", experience);
+              
+
+                $('#name').text(name1); 
+                $('#address').text('Address: ' + address);
+                $('#mobile').text('Mobile: '+mobile);
+                $('#email').text('Emai-id: '+email);
+                $('#father_name').text(father_name);
+                $('#dob').text(dob);
+                $('#religion').text(religion);
+                $('#nationality').text(nationality);
+                $('#skills').text(skills);
+                $('#sex').text(sex);
+                $('#experience').text(experience);
+                $('#language').text(language);
+                $('#hobby').text(hobby);
+                $('#matric').text(matric);
+                $('#intermediate').text(intermediate);
+                $('#graduation').text(graduation);
+                
+                $('#image1').attr('src', `data:image/png;base64,${image1}`);
+            }
+        });
+    });
+</script>
+
+<style>
+#btn_top{
+    margin-top: 20px;
+}
+.button-8 {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+
+}
+
+.button-8:hover,
+.button-8:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.button-8:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-8:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
+</style>
+
+<script>
+    $(document).ready(function () {
+        // function pdf(){
+        $('#download_btn').click(function () {
+            // alert("ok");
+            $.ajax({
+                url: '/resume_pdf',
+                method: 'GET',
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function (response) {
+                    console.log("kya hua ", response);
+                    // Create a temporary URL object to generate a downloadable link
+                    const url = window.URL.createObjectURL(new Blob([response]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'resume.pdf');
+                    document.body.appendChild(link);
+                    link.click();
+
+                    // Clean up the temporary URL object
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    // }
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function () {
+        updateUserCount();
+
+        function updateUserCount() {
+            $.ajax({
+                url: '/user_count',
+                success: function (data) {
+                    $('#userCount').text(data.userCount);
+                }
+            });
+        }
+
+        // Connect to the WebSocket server
+        const socket = io();
+
+        // Update user count when received from the server
+        socket.on('userCount', function (userCount) {
+            $('#userCount').text(userCount);
+        });
+    });
+</script>
+<h5 style="text-align: center">Number of Connected Users: <span id="userCount"></span></h5>
+</html>
