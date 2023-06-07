@@ -34,8 +34,12 @@ app.get('/resume_form', (req, res) => {
   res.render('resume_form');
 });
 
+// app.get('/', (req, res) => {
+//   res.render('index');
+// });
 app.get('/', (req, res) => {
-  res.render('index');
+  // console.log(req.query);
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/index', (req, res) => {
